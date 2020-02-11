@@ -152,7 +152,7 @@ class CVE(object):
         self.description = ""
         self.published_date = ""
         self.modified_date = ""
-        # CWE 
+        # CWE
         self.cwe = ""
         #self.projects = set()
         # Common Vulnerability Scoring System metrics
@@ -271,7 +271,7 @@ class CVE(object):
         "'{}'," # published date
         "'{}'," # modified date
         # cwe
-        "'CWE-{}'," # cwe
+        "'{}'," # cwe
         # cvssV2 metrics
         "'{}'," # cvssV2_vector_string
         "'{}'," # cvssV2_access_vector
