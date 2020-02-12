@@ -35,7 +35,7 @@ class ProjectList(object):
         print("Storing projects to database...", flush=True)
         for project in self.projects:
             project.storeProjectToDB(db,cursor)
-           
+
 
 
 class Project(object):
@@ -55,7 +55,7 @@ class Project(object):
         self.name = name
         self.software_type = ""
         self.website = ""
-        self.repo_url = "" 
+        self.repo_url = ""
         self.repo_type = ""
         self.commit_reference = ""
         self.versions_with_cves = {}
@@ -63,7 +63,7 @@ class Project(object):
 
         #local repository link
         self.local_repo_dir = None
-        
+
         # Each key (vulnerable version id) will store a list
         # of code metrics (Language, size, blank, comments, loc, testing metrics, etc)
         self.code_metrics = {}
@@ -110,7 +110,7 @@ class Project(object):
             "repo_type,"
             "has_version_mapping"
         ") VALUES ("
-        "'{}'," # id
+        "{}," # id
         "'{}'," # pvendor
         "'{}'," # pname
         "{},"  # software type
@@ -136,7 +136,7 @@ class Project(object):
             db.commit()
             # # data = cursor.fetchone()
         except (db.Error, db.Warning) as e:
-            print(e)    
+            print(e)
             print(insert)
 
         version_counter = 0

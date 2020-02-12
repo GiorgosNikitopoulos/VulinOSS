@@ -1087,4 +1087,4 @@ INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (4,'
 INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (5,'Web and network utilities','Software that empowers the web (http servers, browsers, etc) and utilities that can be used related to computer network information gathering and analysis');
 INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (6,'Science and engineering applications','Scientific and engineering software');
 INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (7,'Other','Software that do not belong in any on the other categories');
-
+INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (40,'Misc','Miscellaneous utilities.');
