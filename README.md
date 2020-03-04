@@ -65,5 +65,9 @@ To generate the VulinOSS dataset the following steps are required:
                                 The output csv file
 Note that this step creates sql insert statements and does not store the information directly to the database. 
 
+### Generate the dataset and populate the database for NVD json v1.1
+The usage is the same as with v1.0 but now you have to use nvd_json_parser2.py
+Note that the parser incorporates information from the description of the CVE in order to determine the CWE number for CVEs that do not have one assigned so some differences between the json input and the populated tables will occur. 
+
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

@@ -849,6 +849,7 @@ INSERT INTO `vulinoss`.`cwe` (cwe,name,description) VALUES ("CWE-97","Improper N
 INSERT INTO `vulinoss`.`cwe` (cwe,name,description) VALUES ("CWE-98","Improper Control of Filename for Include/Require Statement in PHP Program (PHP Remote File Inclusion)","The PHP application receives input from an upstream component");
 INSERT INTO `vulinoss`.`cwe` (cwe,name,description) VALUES ("CWE-99","Improper Control of Resource Identifiers (Resource Injection)","The software receives input from an upstream component");
 INSERT INTO `vulinoss`.`cwe` (cwe,name,description) VALUES ("CWE-NVD-Other","","");
+INSERT INTO `vulinoss`.`cwe` (cwe,name,description) VALUES ("NVD-Other","","");
 INSERT INTO `vulinoss`.`cwe` (cwe,name,description) VALUES ("CWE-NVD-noinfo","","");
 -- Populating programming languages --
 INSERT INTO `vulinoss`.`programming_languages` (id,plname) VALUES (1,'ABAP');
@@ -1087,4 +1088,4 @@ INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (4,'
 INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (5,'Web and network utilities','Software that empowers the web (http servers, browsers, etc) and utilities that can be used related to computer network information gathering and analysis');
 INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (6,'Science and engineering applications','Scientific and engineering software');
 INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (7,'Other','Software that do not belong in any on the other categories');
-
+INSERT INTO `vulinoss`.`software_categories` (id,scname,description) VALUES (40,'Misc','Miscellaneous utilities.');
