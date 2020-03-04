@@ -94,15 +94,8 @@ for json_file_name in json_file_list:
         count += 1
         if(count % 1000 == 0):
             print(count)
-        #nodes = [node['cpe_match'] for node in cve_nodes]
-        #for node in cve_nodes:
-        #    vendors.append(node['cpe_match'])
-        # stores the CVE-XXXX-XXXX unique id
         cve_id = cve_entry['CVE_data_meta']['ID']
-        # print(cve_id) # DEBUG
-        # Ignore CVEs that are marked as REJECTED
         if "** REJECT **" in cve_entry['description']['description_data'][0]['value']:
-            # print("\tSkipped due to marked as REJECTED.") # DEBUG
             continue
 
         cve = CVE()
@@ -110,7 +103,6 @@ for json_file_name in json_file_list:
         # assings the previously retrieved cve-id
         cve.id = cve_id
         # Some CVEs are missing most of their details. Skip them
-        #vendors = cve_entry['affects']['vendor']['vendor_data']
 
         if len(cve_nodes) == 0:
             rejected_cves.add(cve_id)
@@ -120,7 +112,6 @@ for json_file_name in json_file_list:
         cve.description = cve_entry['description']['description_data'][0]['value']
         cve.description = cve.description.replace("'","",1000)
         # stores the CWE-XXXX unique id or NVD-CWE-Other/NVD-CWE-noinfo if it does not exist
-        #cve.cwe = cve_entry['problemtype']['problemtype_data'][0]['description'][0]['value'].replace("CWE-","",2)
         cve.cwe = cve_entry['problemtype']['problemtype_data'][0]['description'][0]['value']
 
         ##Get the correct cwe from description if NVD-Other
@@ -128,12 +119,7 @@ for json_file_name in json_file_list:
 
         if get_cwe_ret != None:
             cve.cwe = get_cwe_ret
-        #if 'NVD' in cve.cwe:
-        #    print('----------------------------')
-        #    print(cve.description)
-        #    #print('----------------------------')
 
-        #print(cve.cwe)
         # assigns the published date
         cve.published_date = cve_items['publishedDate']
         # assigns the modified date
@@ -159,10 +145,6 @@ for json_file_name in json_file_list:
         if  'userInteractionRequired' in impact_metrics:
             cve.user_interaction_required = impact_metrics['userInteractionRequired']
         cve_list.add(cve)
-        ## Assigning to Project ##
-        #vendors = cve_entry['affects']['vendor']['vendor_data']
-        # if len(vendors) > 1: # DEBUG
-        #     print(cve_id) # DEBUG
         for node in cve_nodes:
             if(len(node) == 1):
                 print(node.keys())
@@ -180,14 +162,7 @@ for json_file_name in json_file_list:
                     vendor_names = [vendor_name.replace("'","") for vendor_name in vendor_names]
                     products = [cpe_match['cpe23Uri'].split(':')[4] for cpe_match in node['cpe_match'] ]
                     product_versions = [cpe_match['cpe23Uri'].split(':')[5] for cpe_match in node['cpe_match']]
-                    #print(vendor_names)
-                    #print(len(vendor_names))
-                    #print('--------------------------------------------------------------')
-                    #print(len(products))
-                    #print(products)
-                    #print('Reached here!')
                     for vendor_name, product_name in zip(vendor_names, products):
-                        #product_name = product['product_name']
                         # remove '
                         product_name = product_name.replace("'","",20)
 
@@ -239,13 +214,6 @@ for json_file_name in json_file_list:
 
                 products = [cpe_match['cpe23Uri'].split(':')[4] for cpe_match in node['cpe_match'] ]
                 product_versions = [cpe_match['cpe23Uri'].split(':')[5] for cpe_match in node['cpe_match']]
-                #print(vendor_names)
-                #print(len(vendor_names))
-                #print('--------------------------------------------------------------')
-                #print(len(products))
-                #print(products)
-                #print('Reached here!')
-                #continue
                 for vendor_name, product_name in zip(vendor_names, products):
                     #product_name = product['product_name']
                     # remove '
@@ -289,8 +257,6 @@ for json_file_name in json_file_list:
                         #version_value = version['version_value']
                         # //TODO: create a counter that will operate as a project release uid
                         project.addVulnerability(version_value,cve_id)
-                        #print('Looping here')
-                        # print(version_value)
 print("Skipped {} cves.".format(len(rejected_cves)))
 # FIXME: move the insertion to db code to the appropriate classes. Keep only the db connection initialization here.
 
@@ -318,7 +284,7 @@ if args.write_to_db:
     db = db_connector.connect(host= "localhost",
                   user="root",
                   # passwd="mysql@d77c02",
-                  passwd="bizd",
+                  passwd="",
                   db="vulinoss")
     cursor = db.cursor()
     print("Storing CVEs to database", flush=True)
